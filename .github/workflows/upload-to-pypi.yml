@@ -1,10 +1,6 @@
 name: Upload package to Pypi
 
-on:
-  workflow_dispatch:
-    inputs:
-      overrideVersion:
-        description: Manually force a version
+on: [push]
 
 env:
   CIBW_BUILD_VERBOSITY: 1
