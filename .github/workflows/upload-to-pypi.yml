@@ -27,12 +27,12 @@ jobs:
       run: twine check dist/*
 
   build_wheels:
-    name: Build wheels on ${{ matrix.os }}
+    name: Build wheels on ${{ matrix.os }} ${{ matrix.platform }} 
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        arch: [auto, aarch64]
+        platform: [auto, aarch64]
         bitness: [32, 64]
         python: [36, 37, 38, 39]
         include:
@@ -53,6 +53,7 @@ jobs:
             bitness: 64
             platform_id: macosx_x86_64
           - os: ubuntu-latest
+            platform: aarch64
             bitness: 64
             platform_id: manylinux_aarch64
         exclude:
@@ -61,16 +62,16 @@ jobs:
           - os: windows-latest
             python: 39
           - os: macos-latest
-            arch: aarch64
+            platform: aarch64
             bitness: 32
           - os: macos-latest
-            arch: aarch64
+            platform: aarch64
             bitness: 64
           - os: windows-latest
-            arch: aarch64
+            platform: aarch64
             bitness: 32
           - os: windows-latest
-            arch: aarch64
+            platform: aarch64
             bitness: 64
             
     steps:
